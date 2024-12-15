@@ -1,44 +1,49 @@
 package com.example.ElectionManagementSystem.EMS.service;
 
-
-
-import java.util.List;
-
 import com.example.ElectionManagementSystem.EMS.Entities.Role;
 import com.example.ElectionManagementSystem.EMS.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class RoleService {
+
     private final RoleRepository roleRepository;
 
     public RoleService(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
 
+    // Save a new role
     public Role saveRole(Role role) {
-        return (Role)this.roleRepository.save(role);
+        return this.roleRepository.save(role);
     }
 
+    // Get all roles
     public List<Role> getAllRoles() {
         return this.roleRepository.findAll();
     }
 
+    // Get role by ID
     public Role getRoleById(Long id) {
-        return (Role)this.roleRepository.findById(id).orElse((Role) null);
+        Optional<Role> role = this.roleRepository.findById(id);
+        return role.orElse(null);  // return null if not found
     }
 
+    // Update an existing role
     public Role updateRole(Long id, Role updatedRole) {
-        Role existingRole = (Role)this.roleRepository.findById(id).orElse((Role) null);
-        if (existingRole != null) {
-            existingRole.setRoleName(updatedRole.getRoleName());
-            existingRole.setDescription(updatedRole.getDescription());
-            return (Role)this.roleRepository.save(existingRole);
-        } else {
-            return null;
+        Optional<Role> existingRoleOptional = this.roleRepository.findById(id);
+        if (existingRoleOptional.isPresent()) {
+            Role existingRole = existingRoleOptional.get();
+            existingRole.setUserRole(updatedRole.getUserRole());
+            return this.roleRepository.save(existingRole);
         }
+        return null; // return null if not found
     }
 
+    // Delete a role
     public void deleteRole(Long id) {
         this.roleRepository.deleteById(id);
     }

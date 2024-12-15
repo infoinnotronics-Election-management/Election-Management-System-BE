@@ -1,14 +1,14 @@
 package com.example.ElectionManagementSystem.EMS.service;
 
-
-import java.util.List;
-
 import com.example.ElectionManagementSystem.EMS.Entities.User;
 import com.example.ElectionManagementSystem.EMS.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
@@ -16,7 +16,7 @@ public class UserService {
     }
 
     public User saveUser(User user) {
-        return (User)this.userRepository.save(user);
+        return this.userRepository.save(user);
     }
 
     public List<User> getAllUsers() {
@@ -24,18 +24,21 @@ public class UserService {
     }
 
     public User getUserById(Long id) {
-        return (User)this.userRepository.findById(id).orElse((User) null);
+        return this.userRepository.findById(id).orElse(null);
     }
 
     public User updateUser(Long id, User updatedUser) {
-        User existingUser = (User)this.userRepository.findById(id).orElse((User) null);
+        User existingUser = this.userRepository.findById(id).orElse(null);
         if (existingUser != null) {
             existingUser.setUsername(updatedUser.getUsername());
-            existingUser.setPassword(updatedUser.getPassword());
-            existingUser.setContactInfo(updatedUser.getContactInfo());
-            existingUser.setIsActive(updatedUser.getIsActive());
-            existingUser.setRole(updatedUser.getRole());
-            return (User)this.userRepository.save(existingUser);
+            existingUser.setEmail(updatedUser.getEmail());
+            existingUser.setMobile(updatedUser.getMobile());
+            existingUser.setUserLevel(updatedUser.getUserLevel());
+            existingUser.setElectionType(updatedUser.getElectionType());
+            existingUser.setCountry(updatedUser.getCountry());
+            existingUser.setState(updatedUser.getState());
+            existingUser.setStatus(updatedUser.getStatus());
+            return this.userRepository.save(existingUser);
         } else {
             return null;
         }
