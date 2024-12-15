@@ -11,48 +11,49 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(
-        name = "users"
-)
+@Table(name = "users")
 public class User {
+
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
-    @Column(
-            name = "user_id"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long userId;
-    @Column(
-            nullable = false,
-            unique = true
-    )
+
+    @Column(nullable = false, unique = true)
     private String username;
-    @Column(
-            nullable = false
-    )
-    private String password;
-    @Column(
-            name = "contact_info"
-    )
-    private String contactInfo;
-    @Column(
-            name = "is_active",
-            nullable = false
-    )
-    private Boolean isActive;
+
     @ManyToOne
-    @JoinColumn(
-            name = "role_id",
-            nullable = false
-    )
+    @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
-    public User() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "user_level_id", nullable = false)
+    private UserLevel userLevel;
 
+    private String email;
+    private String mobile;
+
+    @ManyToOne
+    @JoinColumn(name = "election_type_id", nullable = false)
+    private ElectionType electionType;
+
+    @ManyToOne
+    @JoinColumn(name = "country_id", nullable = false)
+    private Country country;
+
+    @ManyToOne
+    @JoinColumn(name = "state_id", nullable = false)
+    private State state;
+
+    private String voterId;
+    private String adhar;
+    private String electionWard;
+    private Long electionWardId;
+    private String status;
+
+    // Getters and Setters
     public Long getUserId() {
-        return this.userId;
+        return userId;
     }
 
     public void setUserId(Long userId) {
@@ -60,98 +61,106 @@ public class User {
     }
 
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getContactInfo() {
-        return this.contactInfo;
-    }
-
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
-    }
-
-    public Boolean getIsActive() {
-        return this.isActive;
-    }
-
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
-
     public Role getRole() {
-        return this.role;
+        return role;
     }
 
     public void setRole(Role role) {
         this.role = role;
     }
 
-    @Entity
-    @Table(
-            name = "locations"
-    )
-    public static class Location {
-        @Id
-        @GeneratedValue(
-                strategy = GenerationType.IDENTITY
-        )
-        @Column(
-                name = "location_id"
-        )
-        private Long locationId;
-        @Column(
-                nullable = false
-        )
-        private String name;
-        private String state;
-        private String region;
+    public UserLevel getUserLevel() {
+        return userLevel;
+    }
 
-        public Location() {
-        }
+    public void setUserLevel(UserLevel userLevel) {
+        this.userLevel = userLevel;
+    }
 
-        public Long getLocationId() {
-            return this.locationId;
-        }
+    public String getEmail() {
+        return email;
+    }
 
-        public void setLocationId(Long locationId) {
-            this.locationId = locationId;
-        }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-        public String getName() {
-            return this.name;
-        }
+    public String getMobile() {
+        return mobile;
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
-        public String getState() {
-            return this.state;
-        }
+    public ElectionType getElectionType() {
+        return electionType;
+    }
 
-        public void setState(String state) {
-            this.state = state;
-        }
+    public void setElectionType(ElectionType electionType) {
+        this.electionType = electionType;
+    }
 
-        public String getRegion() {
-            return this.region;
-        }
+    public Country getCountry() {
+        return country;
+    }
 
-        public void setRegion(String region) {
-            this.region = region;
-        }
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public String getVoterId() {
+        return voterId;
+    }
+
+    public void setVoterId(String voterId) {
+        this.voterId = voterId;
+    }
+
+    public String getAdhar() {
+        return adhar;
+    }
+
+    public void setAdhar(String adhar) {
+        this.adhar = adhar;
+    }
+
+    public String getElectionWard() {
+        return electionWard;
+    }
+
+    public void setElectionWard(String electionWard) {
+        this.electionWard = electionWard;
+    }
+
+    public Long getElectionWardId() {
+        return electionWardId;
+    }
+
+    public void setElectionWardId(Long electionWardId) {
+        this.electionWardId = electionWardId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
