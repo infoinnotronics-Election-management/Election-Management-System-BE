@@ -6,28 +6,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "user")
-public class User {
-
+@Table(name = "user_master")
+public class UserMaster {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long user_id;
+    @Column(name = "master_id")
+    private Long master_id;
 
-    @Column(name="username",nullable = false)
-    private String username;
+    @Column(name="master_username",nullable = false)
+    private String master_username;
 
-    @Column(nullable = false)
-    private String user_password;
+    @Column(name = "master_password", nullable = false)
+    private String master_password;
 
-    private String user_email;
-    private int master_id;
-    private int user_role_id;
-    private String user_role;
+   private  String master_email;
     private  int country_id;
     private String country_name;
     private int state_id;
@@ -42,65 +39,34 @@ public class User {
 
     private  String ward_name;
     // Getters and Setters
-    public User(){
+    public UserMaster(){
 
     }
-
-    public Long getUser_id() {
-        return user_id;
+    public String getMaster_username() {
+        return master_username;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setMaster_username(String master_username) {
+        this.master_username = master_username;
     }
 
-    public String getUsername() {
-        return username;
+    public String getMaster_password() {
+        return master_password;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setMaster_password(String master_password) {
+        this.master_password = master_password;
     }
 
-    public String getUser_password() {
-        return user_password;
+    public String getEmail() {
+        return master_email;
     }
 
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
+    public void setEmail(String email) {
+        this.master_email = email;
     }
 
-    public String getUser_email() {
-        return user_email;
-    }
 
-    public void setUser_email(String user_email) {
-        this.user_email = user_email;
-    }
-
-    public int getMaster_id() {
-        return master_id;
-    }
-
-    public void setMaster_id(int master_id) {
-        this.master_id = master_id;
-    }
-
-    public int getUser_role_id() {
-        return user_role_id;
-    }
-
-    public void setUser_role_id(int user_role_id) {
-        this.user_role_id = user_role_id;
-    }
-
-    public String getUser_role() {
-        return user_role;
-    }
-
-    public void setUser_role(String user_role) {
-        this.user_role = user_role;
-    }
 
     public int getCountry_id() {
         return country_id;
@@ -197,6 +163,15 @@ public class User {
     public void setWard_name(String ward_name) {
         this.ward_name = ward_name;
     }
+
+    public Long getMaster_id() {
+        return master_id;
+    }
+
+    public void setMaster_id(Long master_id) {
+        this.master_id = master_id;
+    }
+
 
 
 }

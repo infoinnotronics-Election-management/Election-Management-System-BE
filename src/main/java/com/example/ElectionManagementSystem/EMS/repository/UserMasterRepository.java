@@ -1,9 +1,10 @@
 package com.example.ElectionManagementSystem.EMS.repository;
 
-import com.example.ElectionManagementSystem.EMS.Entities.UserLevel;
+
+import com.example.ElectionManagementSystem.EMS.Entities.UserMaster;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserLevelRepository extends JpaRepository<UserLevel, Long> {
+public interface UserMasterRepository extends JpaRepository<UserMaster, Long> {
 }
