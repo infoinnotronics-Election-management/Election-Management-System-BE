@@ -1,177 +1,206 @@
 package com.example.ElectionManagementSystem.EMS.Entities;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user_master")
 public class UserMaster {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "master_id")
-    private Long master_id;
+    @Column(name = "master_id", nullable = false)
+    private Long masterId;
 
-    @Column(name="master_username",nullable = false)
-    private String master_username;
+    @Column(name = "master_username", nullable = false, length = 255)
+    private String masterUsername;
 
-    @Column(name = "master_password", nullable = false)
-    private String master_password;
+    @Column(name = "master_password", nullable = false, length = 255)
+    private String masterPassword;
 
-   private  String master_email;
-    private  int country_id;
-    private String country_name;
-    private int state_id;
-    private String state_name;
-    private  int constitution_id;
-    private String constitution_name;
-    private  int part_id;
-    private  int voting_area_id;
-    private  int ward_id;
-    private  String part_name;
-    private  String voting_area_name;
+    @Column(name = "master_email", length = 255)
+    private String masterEmail;
 
-    private  String ward_name;
+    @Column(name = "country_id")
+    private Integer countryId;
+
+    @Column(name = "country_name", length = 255)
+    private String countryName;
+
+    @Column(name = "state_id")
+    private Integer stateId;
+
+    @Column(name = "state_name", length = 255)
+    private String stateName;
+
+    @Column(name = "district_id", columnDefinition = "VARCHAR(255)")
+    private String districtId;
+
+    @Column(name = "district_name", columnDefinition = "VARCHAR(255)")
+    private String districtName;
+    @Column(name = "constitution_id")
+    private Integer constitutionId;
+
+    @Column(name = "constitution_name", length = 255)
+    private String constitutionName;
+
+    @Column(name = "part_id")
+    private Integer partId;
+
+    @Column(name = "part_name", length = 255)
+    private String partName;
+
+    @Column(name = "ward_id")
+    private Integer wardId;
+
+    @Column(name = "ward_name", length = 255)
+    private String wardName;
+
+    @Column(name = "voting_area_id")
+    private Integer votingAreaId;
+
+    @Column(name = "voting_area_name", length = 255)
+    private String votingAreaName;
     // Getters and Setters
-    public UserMaster(){
-
-    }
-    public String getMaster_username() {
-        return master_username;
+    public Long getMasterId() {
+        return masterId;
     }
 
-    public void setMaster_username(String master_username) {
-        this.master_username = master_username;
+    public void setMasterId(Long masterId) {
+        this.masterId = masterId;
     }
 
-    public String getMaster_password() {
-        return master_password;
+    public String getMasterUsername() {
+        return masterUsername;
     }
 
-    public void setMaster_password(String master_password) {
-        this.master_password = master_password;
+    public void setMasterUsername(String masterUsername) {
+        this.masterUsername = masterUsername;
     }
 
-    public String getEmail() {
-        return master_email;
+    public String getMasterPassword() {
+        return masterPassword;
     }
 
-    public void setEmail(String email) {
-        this.master_email = email;
+    public void setMasterPassword(String masterPassword) {
+        this.masterPassword = masterPassword;
     }
 
-
-
-    public int getCountry_id() {
-        return country_id;
+    public String getMasterEmail() {
+        return masterEmail;
     }
 
-    public void setCountry_id(int country_id) {
-        this.country_id = country_id;
+    public void setMasterEmail(String masterEmail) {
+        this.masterEmail = masterEmail;
     }
 
-    public String getCountry_name() {
-        return country_name;
+    public Integer getCountryId() {
+        return countryId;
     }
 
-    public void setCountry_name(String country_name) {
-        this.country_name = country_name;
+    public void setCountryId(Integer countryId) {
+        this.countryId = countryId;
     }
 
-    public int getState_id() {
-        return state_id;
+    public String getCountryName() {
+        return countryName;
     }
 
-    public void setState_id(int state_id) {
-        this.state_id = state_id;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
-    public String getState_name() {
-        return state_name;
+    public Integer getStateId() {
+        return stateId;
     }
 
-    public void setState_name(String state_name) {
-        this.state_name = state_name;
+    public void setStateId(Integer stateId) {
+        this.stateId = stateId;
     }
 
-    public int getConstitution_id() {
-        return constitution_id;
+    public String getStateName() {
+        return stateName;
     }
 
-    public void setConstitution_id(int constitution_id) {
-        this.constitution_id = constitution_id;
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 
-    public String getConstitution_name() {
-        return constitution_name;
+    public String getDistrictId() {
+        return districtId;
     }
 
-    public void setConstitution_name(String constitution_name) {
-        this.constitution_name = constitution_name;
+    public void setDistrictId(String districtId) {
+        this.districtId = districtId;
     }
 
-    public int getPart_id() {
-        return part_id;
+    public String getDistrictName() {
+        return districtName;
     }
 
-    public void setPart_id(int part_id) {
-        this.part_id = part_id;
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+    public Integer getConstitutionId() {
+        return constitutionId;
     }
 
-    public int getVoting_area_id() {
-        return voting_area_id;
+    public void setConstitutionId(Integer constitutionId) {
+        this.constitutionId = constitutionId;
     }
 
-    public void setVoting_area_id(int voting_area_id) {
-        this.voting_area_id = voting_area_id;
+    public String getConstitutionName() {
+        return constitutionName;
     }
 
-    public int getWard_id() {
-        return ward_id;
+    public void setConstitutionName(String constitutionName) {
+        this.constitutionName = constitutionName;
     }
 
-    public void setWard_id(int ward_id) {
-        this.ward_id = ward_id;
+    public Integer getPartId() {
+        return partId;
     }
 
-    public String getPart_name() {
-        return part_name;
+    public void setPartId(Integer partId) {
+        this.partId = partId;
     }
 
-    public void setPart_name(String part_name) {
-        this.part_name = part_name;
+    public String getPartName() {
+        return partName;
     }
 
-    public String getVoting_area_name() {
-        return voting_area_name;
+    public void setPartName(String partName) {
+        this.partName = partName;
     }
 
-    public void setVoting_area_name(String voting_area_name) {
-        this.voting_area_name = voting_area_name;
+    public Integer getWardId() {
+        return wardId;
     }
 
-    public String getWard_name() {
-        return ward_name;
+    public void setWardId(Integer wardId) {
+        this.wardId = wardId;
     }
 
-    public void setWard_name(String ward_name) {
-        this.ward_name = ward_name;
+    public String getWardName() {
+        return wardName;
     }
 
-    public Long getMaster_id() {
-        return master_id;
+    public void setWardName(String wardName) {
+        this.wardName = wardName;
     }
 
-    public void setMaster_id(Long master_id) {
-        this.master_id = master_id;
+    public Integer getVotingAreaId() {
+        return votingAreaId;
     }
 
+    public void setVotingAreaId(Integer votingAreaId) {
+        this.votingAreaId = votingAreaId;
+    }
 
+    public String getVotingAreaName() {
+        return votingAreaName;
+    }
 
+    public void setVotingAreaName(String votingAreaName) {
+        this.votingAreaName = votingAreaName;
+    }
 }

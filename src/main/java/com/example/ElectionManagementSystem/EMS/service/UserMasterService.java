@@ -30,21 +30,23 @@ public class UserMasterService {
     public UserMaster updateUserMaster(Long id, UserMaster updatedUserMaster) {
         UserMaster existingUserMaster = this.userMasterRepository.findById(id).orElse(null);
         if (existingUserMaster != null) {
-            existingUserMaster.setMaster_username(updatedUserMaster.getMaster_username());
-            existingUserMaster.setMaster_password(updatedUserMaster.getMaster_password());
-            existingUserMaster.setEmail(updatedUserMaster.getEmail());
-            existingUserMaster.setCountry_id(updatedUserMaster.getCountry_id());
-            existingUserMaster.setCountry_name(updatedUserMaster.getCountry_name());
-            existingUserMaster.setState_id(updatedUserMaster.getState_id());
-            existingUserMaster.setState_name(updatedUserMaster.getState_name());
-            existingUserMaster.setConstitution_id(updatedUserMaster.getConstitution_id());
-            existingUserMaster.setConstitution_name(updatedUserMaster.getConstitution_name());
-            existingUserMaster.setPart_id(updatedUserMaster.getPart_id());
-            existingUserMaster.setVoting_area_id(updatedUserMaster.getVoting_area_id());
-            existingUserMaster.setWard_id(updatedUserMaster.getWard_id());
-            existingUserMaster.setPart_name(updatedUserMaster.getPart_name());
-            existingUserMaster.setVoting_area_name(updatedUserMaster.getVoting_area_name());
-            existingUserMaster.setWard_name(updatedUserMaster.getWard_name());
+            existingUserMaster.setMasterUsername(updatedUserMaster.getMasterUsername());
+            existingUserMaster.setMasterPassword(updatedUserMaster.getMasterPassword());
+            existingUserMaster.setMasterEmail(updatedUserMaster.getMasterEmail());
+            existingUserMaster.setCountryId(updatedUserMaster.getCountryId());
+            existingUserMaster.setCountryName(updatedUserMaster.getCountryName());
+            existingUserMaster.setStateId(updatedUserMaster.getStateId());
+            existingUserMaster.setStateName(updatedUserMaster.getStateName());
+            existingUserMaster.setDistrictId(updatedUserMaster.getDistrictId());
+            existingUserMaster.setDistrictName(updatedUserMaster.getDistrictName());
+            existingUserMaster.setConstitutionId(updatedUserMaster.getConstitutionId());
+            existingUserMaster.setConstitutionName(updatedUserMaster.getConstitutionName());
+            existingUserMaster.setPartId(updatedUserMaster.getPartId());
+            existingUserMaster.setPartName(updatedUserMaster.getPartName());
+            existingUserMaster.setWardId(updatedUserMaster.getWardId());
+            existingUserMaster.setWardName(updatedUserMaster.getWardName());
+            existingUserMaster.setVotingAreaId(updatedUserMaster.getVotingAreaId());
+            existingUserMaster.setVotingAreaName(updatedUserMaster.getVotingAreaName());
             return this.userMasterRepository.save(existingUserMaster);
         } else {
             return null;
