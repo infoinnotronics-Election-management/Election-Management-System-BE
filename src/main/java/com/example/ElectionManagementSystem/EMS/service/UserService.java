@@ -1,10 +1,9 @@
-package com.example.ElectionManagementSystem.EMS.service;
-
+package com.example.ElectionManagementSystem.EMS.service;//package com.example.ElectionManagementSystem.EMS.service;
 import com.example.ElectionManagementSystem.EMS.Entities.User;
 import com.example.ElectionManagementSystem.EMS.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService {
@@ -15,20 +14,31 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User saveUser(User user) {
-        return this.userRepository.save(user);
-    }
-
-    public List<User> getAllUsers() {
-        return this.userRepository.findAll();
+    public Page<User> getAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
     public User getUserById(Long id) {
-        return this.userRepository.findById(id).orElse(null);
+        return userRepository.findById(id).orElse(null);
     }
 
+    public User saveUser(User user) {
+        // Check if email exists
+        if (userRepository.findByUserEmail(user.getUserEmail()).isPresent()) {
+            throw new IllegalArgumentException("User with this email already exists");
+        }
+
+        // Check if mobile number exists
+//        if (userRepository.findByMobileNumber(user.getMobileNumber()).isPresent()) {
+//            throw new IllegalArgumentException("User with this mobile number already exists");
+//        }
+
+        return userRepository.save(user);
+    }
+
+
     public User updateUser(Long id, User updatedUser) {
-        User existingUser = this.userRepository.findById(id).orElse(null);
+        User existingUser = userRepository.findById(id).orElse(null);
         if (existingUser != null) {
             existingUser.setUsername(updatedUser.getUsername());
             existingUser.setUserPassword(updatedUser.getUserPassword());
@@ -50,13 +60,13 @@ public class UserService {
             existingUser.setWardName(updatedUser.getWardName());
             existingUser.setVotingAreaId(updatedUser.getVotingAreaId());
             existingUser.setVotingAreaName(updatedUser.getVotingAreaName());
-            return this.userRepository.save(existingUser);
+            return userRepository.save(existingUser);
         } else {
             return null;
         }
     }
 
     public void deleteUser(Long id) {
-        this.userRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 }
